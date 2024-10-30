@@ -1,0 +1,22 @@
+name: 'Test actions'
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build_wordpress_major_and_beta_push_to_github_and_deploy_website:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Test without ID
+              run: |
+                echo 'TEST_WITHOUT_ID="WITHOUT_ID"' >> $GITHUB_OUTPUT
+            - name: Test with ID
+              id: with-id
+              run: |
+                echo "steps.with-id.outputs.TEST_WITHOUT_ID: ${{ steps.with-id.outputs.TEST_WITHOUT_ID }}"
+                echo 'TEST_WITH_ID="WITH_ID"' >> $GITHUB_OUTPUT
+            - name: Echo
+              run: |
+                echo "steps.with-id.outputs.TEST_WITHOUT_ID: ${{ steps.without-id.outputs.TEST_WITHOUT_ID }}"
+                echo "steps.with-id.outputs.TEST_WITH_ID: ${{ steps.with-id.outputs.TEST_WITH_ID }}"
