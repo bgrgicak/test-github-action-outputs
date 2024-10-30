@@ -4,7 +4,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    build_wordpress_major_and_beta_push_to_github_and_deploy_website:
+    test-outputs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
